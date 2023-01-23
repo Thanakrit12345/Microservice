@@ -75,8 +75,9 @@ def remove_user(user):
 def user_name_update(user,passwd,name):
     conn = sqlite3.connect(db_folder)
     sql = """
-        UPDATE INTO username(user,password,name)
-        VALUES(?,?,?)
+        UPDATE username(user,password,name)
+        SET PASSWORD=?, name=?
+        WHERE user=?
     """
     val = (user,passwd,name)
     cursor = conn.execute(sql, val)
